@@ -1,0 +1,108 @@
+plugins {
+    id 'java'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+    id 'com.jfrog.artifactory' version('4.25.5')
+    id "com.gradle.plugin-publish" version("0.12.0")
+}
+
+group "io.github.chiragji"
+version '0.0.1'
+description "Gradle plugin to convert JaCoCo coverage reports to Cobertura coverage reports"
+
+def projectName = 'Gradle Jacotura plugin'
+def githubUrl = 'https://github.com/chirag-ji/Jacotura'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withSourcesJar()
+}
+
+ext {
+    lombokVersion = "1.18.22"
+    mockitoVersion = "1.10.19"
+    jUnitVersion = "5.8.2"
+    jaxbApi = "3.0.1"
+    jaxbRuntime = "3.0.2"
+}
+
+dependencies {
+    compileOnly(gradleApi())
+
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+
+    implementation("jakarta.xml.bind:jakarta.xml.bind-api:$jaxbApi")
+    implementation("org.glassfish.jaxb:jaxb-runtime:$jaxbRuntime")
+
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
+    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
+
+    testImplementation("org.mockito:mockito-all:$mockitoVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+pluginBundle {
+    website = githubUrl
+    vcsUrl = githubUrl
+    description = project.description
+    tags = ['cobertura', 'jacoco', 'jacotura', 'reports']
+
+    mavenCoordinates {
+        groupId = project.group
+        artifactId = "jacotura-gradle-plugin"
+    }
+}
+
+gradlePlugin {
+    plugins {
+        jacoturaPlugin {
+            displayName = projectName
+            description = project.description
+            id = 'io.github.chiragji.jacotura'
+            implementationClass = 'io.github.chiragji.jacotura.JacoturaPlugin'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+artifactory {
+    contextUrl = artifactory_contextUrl
+
+    publish {
+        contextUrl = artifactory_contextUrl
+
+        repository {
+            repoKey = artifactory_repoKey
+            username = artifactory_user
+            password = artifactory_password
+        }
+
+        defaults {
+            publications("mavenJava")
+            publishConfigs('published')
+            publishIvy = false
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
