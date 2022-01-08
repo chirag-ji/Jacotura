@@ -7,7 +7,7 @@ plugins {
 }
 
 group "io.github.chiragji"
-version '0.0.1'
+version '1.0.0'
 description "Gradle plugin to convert JaCoCo coverage reports to Cobertura coverage reports"
 
 def projectName = 'Gradle Jacotura plugin'
