@@ -1,13 +1,16 @@
 Jacotura [jacotura-gradle-plugin]
 ======================
+[![Build](https://github.com/chirag-ji/Jacotura/actions/workflows/gradle.yml/badge.svg)](https://github.com/chirag-ji/Jacotura/actions/workflows/gradle.yml)
 
-Jacotura is a [Gradle](https://www.gradle.org) plugin that converts [JaCoCo](http://www.eclemma.org/jacoco/) coverage reports to [Cobertura](http://cobertura.github.io/cobertura/) coverage reports.
+Jacotura is a [Gradle](https://www.gradle.org) plugin that converts [JaCoCo](http://www.eclemma.org/jacoco/) coverage
+reports to [Cobertura](http://cobertura.github.io/cobertura/) coverage reports.
 
 Usage
 -----
 Add the following to buildscript:
 
 ### Multi-module Project
+
 ```groovy
 buildscript {
   repositories {
