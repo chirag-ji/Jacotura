@@ -33,16 +33,8 @@
  */
 package io.github.chiragji.jacotura;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import org.gradle.internal.impldep.org.jetbrains.annotations.Nullable;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -52,27 +44,13 @@ import java.util.Objects;
  * @author Chirag (chirag-ji)
  * @since 0.0.1
  */
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public abstract class Util {
+public interface Util {
 
-    public static long getLong(@Nullable String number) {
-        return Objects.isNull(number) || isEmptyString(number) ? 0L : Long.parseLong(number);
-    }
-
-    public static boolean isEmptyString(@Nullable String str) {
+    static boolean isEmptyString(@Nullable String str) {
         return Objects.isNull(str) || str.trim().isEmpty();
     }
 
-    public static String readString(@NonNull Path filePath) throws IOException {
-        return readString(filePath, StandardCharsets.UTF_8);
-    }
-
-    public static String readString(@NonNull Path filePath, @NonNull Charset charset) throws IOException {
-        byte[] data = Files.readAllBytes(filePath);
-        return new String(data, charset);
-    }
-
-    public static boolean isEmptyCollection(@Nullable Collection<?> collection) {
+    static boolean isEmptyCollection(@Nullable Collection<?> collection) {
         return Objects.isNull(collection) || collection.isEmpty();
     }
 }
