@@ -33,12 +33,16 @@
  */
 package io.github.chiragji.jacotura;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * A class that defines the constants that will be used widely in many pieces of the codebase
  *
  * @author Chirag (chirag-ji)
  * @since 0.0.1
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public abstract class JacoturaConstants {
     public static final String JACOTURA_TASK_NAME = "jacotura";
     public static final String JACOTURA_EXTENSION_NAME = "jacotura";
