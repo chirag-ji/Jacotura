@@ -3,16 +3,24 @@ package io.github.chiragji.jacotura;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.annotation.Testable;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 @Testable
 class JacoturaConversionTest {
 
     @Test
     void testConversion() {
-        JacoturaConfig config = getConfig();
-        JacoturaConversion jacoturaConversion = new JacoturaConversion(config);
-        long start = System.currentTimeMillis();
-        jacoturaConversion.start();
-        printCompletionTime(start);
+        Exception ex = null;
+        try {
+            JacoturaConfig config = getConfig();
+            JacoturaConversion jacoturaConversion = new JacoturaConversion(config);
+            long start = System.currentTimeMillis();
+            jacoturaConversion.start();
+            printCompletionTime(start);
+        } catch (Exception e) {
+            ex = e;
+        }
+        assertNull(ex, "Assert no exceptions are thrown");
     }
 
     private JacoturaConfig getConfig() {

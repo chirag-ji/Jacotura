@@ -144,10 +144,6 @@ public class JacoturaConversion {
         }
     }
 
-    private String convertToPercent(int percent, int cb, int mcb) {
-        return String.format("%d%% (%d/%d)", percent, cb, mcb);
-    }
-
     private List<JacocoLine> getSourceFileLines(JacocoPackage pkg, String fileName) {
         return pkg.getSourceFiles().stream().filter(f -> f.getName().equals(fileName)).findAny()
                 .map(JacocoSourceFile::getLines).orElse(Collections.emptyList());
