@@ -79,13 +79,13 @@ public class JacoturaTask extends ConventionTask {
     }
 
     private boolean hasRequiredProperties() {
-        Map<String, String> props = getProperties();
+        Map<String, String> tmpProps = getProperties();
         boolean hasProperties = true;
-        if (!props.containsKey(JacoturaConstants.KEY_JACOCO_PATH)) {
+        if (!tmpProps.containsKey(JacoturaConstants.KEY_JACOCO_PATH)) {
             reportMissingProperty(JacoturaConstants.KEY_JACOCO_PATH);
             hasProperties = false;
         }
-        if (!props.containsKey(JacoturaConstants.KEY_COBERTURA_PATH)) {
+        if (!tmpProps.containsKey(JacoturaConstants.KEY_COBERTURA_PATH)) {
             reportMissingProperty(JacoturaConstants.KEY_COBERTURA_PATH);
             hasProperties = false;
         }
