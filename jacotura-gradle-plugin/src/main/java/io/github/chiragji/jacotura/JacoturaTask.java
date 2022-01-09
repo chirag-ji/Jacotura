@@ -85,8 +85,8 @@ public class JacoturaTask extends ConventionTask {
             reportMissingProperty(JacoturaConstants.KEY_JACOCO_PATH);
             hasProperties = false;
         }
-        if (!props.containsKey(JacoturaConstants.KEY_JACOCO_PATH)) {
-            reportMissingProperty(JacoturaConstants.KEY_JACOCO_PATH);
+        if (!props.containsKey(JacoturaConstants.KEY_COBERTURA_PATH)) {
+            reportMissingProperty(JacoturaConstants.KEY_COBERTURA_PATH);
             hasProperties = false;
         }
         return hasProperties;
