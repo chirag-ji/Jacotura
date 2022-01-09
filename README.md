@@ -1,6 +1,8 @@
 Jacotura [jacotura-gradle-plugin]
 ======================
 [![Build](https://github.com/chirag-ji/Jacotura/actions/workflows/gradle.yml/badge.svg)](https://github.com/chirag-ji/Jacotura/actions/workflows/gradle.yml)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/chirag-ji/Jacotura.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/chirag-ji/Jacotura/alerts/)
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/chirag-ji/Jacotura.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/chirag-ji/Jacotura/context:java)
 
 Jacotura is a [Gradle](https://www.gradle.org) plugin that converts [JaCoCo](http://www.eclemma.org/jacoco/) coverage
 reports to [Cobertura](http://cobertura.github.io/cobertura/) coverage reports.
