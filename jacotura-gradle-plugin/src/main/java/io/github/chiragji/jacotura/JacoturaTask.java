@@ -74,8 +74,12 @@ public class JacoturaTask extends ConventionTask {
         }
 
         LOGGER.info("Starting jacoco report conversion to cobertura");
-        new JacoturaConversion(config).start();
-        LOGGER.info("finished jacoco report conversion to cobertura");
+        try {
+            new JacoturaConversion(config).start();
+            LOGGER.info("finished jacoco report conversion to cobertura");
+        } catch (Exception e) {
+            LOGGER.error("failed to write cobertura report due to internal error; please consider reporting it to https://github.com/chirag-ji/Jacotura/issues. Thanks!; error: ", e);
+        }
     }
 
     private boolean hasRequiredProperties() {
