@@ -12,6 +12,7 @@ Jacotura [jacotura-gradle-plugin]
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=chirag-ji_Jacotura&metric=coverage)](https://sonarcloud.io/summary/new_code?id=chirag-ji_Jacotura)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=chirag-ji_Jacotura&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=chirag-ji_Jacotura)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5516/badge)](https://bestpractices.coreinfrastructure.org/projects/5516)
+[![CodeQL](https://github.com/chirag-ji/Jacotura/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/chirag-ji/Jacotura/actions/workflows/codeql-analysis.yml)
 
 Jacotura is a [Gradle](https://www.gradle.org) plugin that converts [JaCoCo](http://www.eclemma.org/jacoco/) coverage
 reports to [Cobertura](http://cobertura.github.io/cobertura/) coverage reports.
