@@ -3,6 +3,8 @@ package io.github.chiragji.jacotura;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.annotation.Testable;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @Testable
@@ -20,6 +22,8 @@ class JacoturaConversionTest {
         } catch (Exception e) {
             ex = e;
         }
+        if (Objects.nonNull(ex))
+            ex.printStackTrace();
         assertNull(ex, "Assert no exceptions are thrown");
     }
 

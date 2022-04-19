@@ -41,7 +41,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -68,7 +68,7 @@ public class CoberturaReport extends CoberturaAttributes {
     @XmlElement(name = "source")
     public List<CoberturaSourceFile> getSources() {
         if (Objects.isNull(sources))
-            this.sources = new LinkedList<>();
+            this.sources = new ArrayList<>();
         return sources;
     }
 
@@ -76,7 +76,7 @@ public class CoberturaReport extends CoberturaAttributes {
     @XmlElement(name = "package")
     public List<CoberturaPackage> getPackages() {
         if (Objects.isNull(packages))
-            packages = new LinkedList<>();
+            packages = new ArrayList<>();
         return packages;
     }
 
