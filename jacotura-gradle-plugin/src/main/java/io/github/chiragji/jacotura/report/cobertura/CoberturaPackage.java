@@ -42,7 +42,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -69,7 +69,7 @@ public class CoberturaPackage extends CoberturaAttributes {
     @XmlElement(name = "class")
     public List<CoberturaClass> getClasses() {
         if (Objects.isNull(classes))
-            classes = new LinkedList<>();
+            classes = new ArrayList<>();
         return classes;
     }
 
