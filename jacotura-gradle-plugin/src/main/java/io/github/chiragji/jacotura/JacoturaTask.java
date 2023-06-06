@@ -108,6 +108,7 @@ public class JacoturaTask extends ConventionTask {
         config.setSrcDirs(getArrayProperty(JacoturaConstants.KEY_SRC_DIRS));
         config.setIncludeFileNames(getArrayProperty(JacoturaConstants.KEY_INCLUDED_FILE_NAMES));
         config.setBeautify(Boolean.parseBoolean(tmpProps.get(JacoturaConstants.KEY_BEAUTIFY)));
+        config.setUsePlainFileName(Boolean.parseBoolean(tmpProps.get(JacoturaConstants.KEY_USE_PLAIN_FILE_NAME)));
         return config;
     }
 
