@@ -55,4 +55,5 @@ public abstract class JacoturaConstants {
     public static final String KEY_SRC_DIRS = "jacotura.source.dirs";
     public static final String KEY_INCLUDED_FILE_NAMES = "jacotura.files.includedNames";
     public static final String KEY_BEAUTIFY = "jacotura.cobertura.beautify";
+    public static final String KEY_USE_PLAIN_FILE_NAME = "jacotura.cobertura.file.name.usePlain";
 }
