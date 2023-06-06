@@ -80,6 +80,9 @@ public class JacoturaPropertyExtractor {
         if (extensions.isBeautify()) {
             properties.put(JacoturaConstants.KEY_BEAUTIFY, true);
         }
+        if (extensions.isUsePlainFileNames()) {
+            properties.put(JacoturaConstants.KEY_USE_PLAIN_FILE_NAME, true);
+        }
     }
 
     private void evaluateActionBroadcast(ActionBroadcast<? super JacoturaProperties> prosBroadcast, Map<String, Object> props) {

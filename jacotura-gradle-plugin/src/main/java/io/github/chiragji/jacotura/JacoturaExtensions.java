@@ -64,6 +64,9 @@ public class JacoturaExtensions {
     @Input
     private boolean beautify;
 
+    @Input
+    private boolean usePlainFileNames;
+
     public void properties(Action<? super JacoturaProperties> action) {
         propertiesAction.add(action);
     }
