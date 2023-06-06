@@ -41,7 +41,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -80,7 +80,7 @@ public class CoberturaLine {
     @XmlElement(name = "condition")
     public List<CoberturaCondition> getConditions() {
         if (Objects.isNull(conditions))
-            conditions = new LinkedList<>();
+            conditions = new ArrayList<>();
         return conditions;
     }
 

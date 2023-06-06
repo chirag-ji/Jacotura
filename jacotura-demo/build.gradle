@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
-//    id 'io.github.chiragji.jacotura' version('1.0.0')
+    id 'io.github.chiragji.jacotura' version('1.0.0')
 }
 
 repositories {
@@ -31,11 +31,11 @@ jacocoTestReport {
     }
 }
 
-//jacotura {
-//    properties {
-//        property("jacotura.jacoco.path", "$buildDir/reports/jacoco.xml")
-//        property("jacotura.cobertura.path", "$buildDir/reports/cobertura.xml")
-//    }
-//    sourceDirs = sourceSets.main.java.srcDirs
-//    beautify = false
-//}
+jacotura {
+    properties {
+        property("jacotura.jacoco.path", "$buildDir/reports/jacoco.xml")
+        property("jacotura.cobertura.path", "$buildDir/reports/cobertura.xml")
+    }
+    sourceDirs = sourceSets.main.java.srcDirs
+    beautify = false
+}

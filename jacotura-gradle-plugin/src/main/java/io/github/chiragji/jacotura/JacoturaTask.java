@@ -74,19 +74,23 @@ public class JacoturaTask extends ConventionTask {
         }
 
         LOGGER.info("Starting jacoco report conversion to cobertura");
-        new JacoturaConversion(config).start();
-        LOGGER.info("finished jacoco report conversion to cobertura");
+        try {
+            new JacoturaConversion(config).start();
+            LOGGER.info("finished jacoco report conversion to cobertura");
+        } catch (Exception e) {
+            LOGGER.error("failed to write cobertura report due to internal error; please consider reporting it to https://github.com/chirag-ji/Jacotura/issues. Thanks!; error: ", e);
+        }
     }
 
     private boolean hasRequiredProperties() {
-        Map<String, String> props = getProperties();
+        Map<String, String> tmpProps = getProperties();
         boolean hasProperties = true;
-        if (!props.containsKey(JacoturaConstants.KEY_JACOCO_PATH)) {
+        if (!tmpProps.containsKey(JacoturaConstants.KEY_JACOCO_PATH)) {
             reportMissingProperty(JacoturaConstants.KEY_JACOCO_PATH);
             hasProperties = false;
         }
-        if (!props.containsKey(JacoturaConstants.KEY_JACOCO_PATH)) {
-            reportMissingProperty(JacoturaConstants.KEY_JACOCO_PATH);
+        if (!tmpProps.containsKey(JacoturaConstants.KEY_COBERTURA_PATH)) {
+            reportMissingProperty(JacoturaConstants.KEY_COBERTURA_PATH);
             hasProperties = false;
         }
         return hasProperties;
@@ -97,13 +101,13 @@ public class JacoturaTask extends ConventionTask {
     }
 
     private JacoturaConfig buildJacoturaConfig() {
-        Map<String, String> props = getProperties();
+        Map<String, String> tmpProps = getProperties();
         JacoturaConfig config = new JacoturaConfig();
-        config.setJacoturaReport(props.get(JacoturaConstants.KEY_JACOCO_PATH));
-        config.setCoberturaReport(props.get(JacoturaConstants.KEY_COBERTURA_PATH));
+        config.setJacoturaReport(tmpProps.get(JacoturaConstants.KEY_JACOCO_PATH));
+        config.setCoberturaReport(tmpProps.get(JacoturaConstants.KEY_COBERTURA_PATH));
         config.setSrcDirs(getArrayProperty(JacoturaConstants.KEY_SRC_DIRS));
         config.setIncludeFileNames(getArrayProperty(JacoturaConstants.KEY_INCLUDED_FILE_NAMES));
-        config.setBeautify(Boolean.parseBoolean(props.get(JacoturaConstants.KEY_BEAUTIFY)));
+        config.setBeautify(Boolean.parseBoolean(tmpProps.get(JacoturaConstants.KEY_BEAUTIFY)));
         return config;
     }
 

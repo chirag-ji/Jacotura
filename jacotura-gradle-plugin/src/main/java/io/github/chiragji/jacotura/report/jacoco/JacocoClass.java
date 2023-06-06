@@ -39,7 +39,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -70,7 +70,7 @@ public class JacocoClass extends JacocoAttributes {
     @XmlElement(name = "method")
     public List<JacocoMethod> getMethods() {
         if (Objects.isNull(methods))
-            this.methods = new LinkedList<>();
+            this.methods = new ArrayList<>();
         return methods;
     }
 }

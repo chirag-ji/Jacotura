@@ -33,12 +33,16 @@
  */
 package io.github.chiragji.jacotura;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * A class that defines the constants that will be used widely in many pieces of the codebase
  *
  * @author Chirag (chirag-ji)
  * @since 0.0.1
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public abstract class JacoturaConstants {
     public static final String JACOTURA_TASK_NAME = "jacotura";
     public static final String JACOTURA_EXTENSION_NAME = "jacotura";
@@ -46,9 +50,9 @@ public abstract class JacoturaConstants {
     public static final String PROJECT_NAME = "Gradle Jacotura plugin";
     public static final String DESCRIPTION = "Gradle plugin to convert JaCoCo coverage reports to Cobertura coverage reports";
 
-    public static String KEY_JACOCO_PATH = "jacotura.jacoco.path";
-    public static String KEY_COBERTURA_PATH = "jacotura.cobertura.path";
-    public static String KEY_SRC_DIRS = "jacotura.source.dirs";
-    public static String KEY_INCLUDED_FILE_NAMES = "jacotura.files.includedNames";
-    public static String KEY_BEAUTIFY = "jacotura.cobertura.beautify";
+    public static final String KEY_JACOCO_PATH = "jacotura.jacoco.path";
+    public static final String KEY_COBERTURA_PATH = "jacotura.cobertura.path";
+    public static final String KEY_SRC_DIRS = "jacotura.source.dirs";
+    public static final String KEY_INCLUDED_FILE_NAMES = "jacotura.files.includedNames";
+    public static final String KEY_BEAUTIFY = "jacotura.cobertura.beautify";
 }
