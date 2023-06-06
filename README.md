@@ -79,7 +79,10 @@ jacotura {
 	
   // if wanting to beautify the output cobertura report 
   beautify = true
-	
+
+  // if wants to see only file name in `filename` property of `class` tag in cobertura report. default is `false`
+  usePlainFileNames = true
+
   // Only output coverage for selected file names. Do not set if needed for all files
   includedFileNames = ['A.java', 'B.java']
 }
