@@ -52,6 +52,7 @@ public class JacoturaConfig {
     private Set<String> srcDirs;
     private Set<String> includeFileNames;
     private boolean beautify;
+    private boolean usePlainFileName;
 
     public void setJacoturaReport(@NonNull String jacoturaFilePath) {
         this.jacoturaFile = new File(jacoturaFilePath);

@@ -97,7 +97,7 @@ public class JacoturaConversion {
                 }
                 CoberturaClass cCls = cPkg.createNewClass();
                 cCls.setName(getCoberturaFriendlyName(jCls.getName()));
-                cCls.setFileName(jCls.getSourceFileName());
+                cCls.setFileName(getClassName(jPkg, jCls));
                 computeRates(cCls, jCls);
                 List<JacocoLine> lines = getSourceFileLines(jPkg, jCls.getSourceFileName());
                 jCls.getMethods().parallelStream().forEach(jMth -> {
@@ -116,6 +116,14 @@ public class JacoturaConversion {
                 });
             });
         });
+    }
+
+    private String getClassName(JacocoPackage pkg, JacocoClass cls) {
+        if (jacoturaConfig.isUsePlainFileName()) {
+            return cls.getSourceFileName();
+        } else {
+            return String.format("%s/%s", pkg.getName(), cls.getSourceFileName());
+        }
     }
 
     private void buildLineCoverage(@NonNull CoberturaLine cLine, @NonNull JacocoLine jLine) {
