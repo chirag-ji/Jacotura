@@ -85,11 +85,11 @@ public class JacoturaConversion {
     }
 
     private void buildCoverage(JacocoReport jacocoReport, CoberturaReport coberturaReport) {
-        jacocoReport.getPackages().parallelStream().forEach(jPkg -> {
+        jacocoReport.getPackages().forEach(jPkg -> {
             CoberturaPackage cPkg = coberturaReport.createNewPackage();
             computeRates(cPkg, jPkg);
             cPkg.setName(getCoberturaFriendlyName(jPkg.getName()));
-            jPkg.getClasses().parallelStream().forEach(jCls -> {
+            jPkg.getClasses().forEach(jCls -> {
                 Set<String> includedNames = jacoturaConfig.getIncludeFileNames();
                 // check user defined only files to convert. if defined check for exact name
                 if (!Util.isEmptyCollection(includedNames) && !includedNames.contains(jCls.getSourceFileName())) {
@@ -100,16 +100,16 @@ public class JacoturaConversion {
                 cCls.setFileName(getClassName(jPkg, jCls));
                 computeRates(cCls, jCls);
                 List<JacocoLine> lines = getSourceFileLines(jPkg, jCls.getSourceFileName());
-                jCls.getMethods().parallelStream().forEach(jMth -> {
+                jCls.getMethods().forEach(jMth -> {
                     CoberturaMethod cMth = cCls.createNewMethod();
                     cMth.setName(getCoberturaFriendlyName(jMth.getName()));
                     cMth.setSignature(jMth.getDescription());
                     List<JacocoLine> methodLines = getMethodLines(jCls.getMethods(), jMth, lines);
-                    methodLines.parallelStream().forEach(jLine -> {
+                    methodLines.forEach(jLine -> {
                         CoberturaLine cLine = cMth.createNewLine();
                         buildLineCoverage(cLine, jLine);
                     });
-                    lines.parallelStream().forEach(jLine -> {
+                    lines.forEach(jLine -> {
                         CoberturaLine cLine = cCls.createNewLine();
                         buildLineCoverage(cLine, jLine);
                     });
@@ -162,7 +162,7 @@ public class JacoturaConversion {
         if (startLine <= 0) return Collections.emptyList();
         JacocoMethod highestMethod = methods.stream().filter(m -> m.getLine() > startLine).findAny().orElse(null);
         int endLine = Objects.isNull(highestMethod) ? Integer.MAX_VALUE : highestMethod.getLine();
-        return lines.parallelStream().filter(l -> startLine <= l.getLineNumber() && l.getLineNumber() < endLine)
+        return lines.stream().filter(l -> startLine <= l.getLineNumber() && l.getLineNumber() < endLine)
                 .collect(Collectors.toList());
     }
 
