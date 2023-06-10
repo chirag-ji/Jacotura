@@ -32,16 +32,12 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-        with:
-          arguments: build
+        run: ./gradlew build
 
       # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
       # the publishing section of your build.gradle
       - name: Publish to Gradle Plugin Portal
-        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-        with:
-          arguments: publishPlugins
         env:
           PLUGIN_PUBLISH_KEY: ${{ secrets.GRADLE_PLUGIN_PUBLISH_KEY }}
           PLUGIN_PUBLISH_SECRET: ${{ secrets.GRADLE_PLUGIN_PUBLISH_SECRET }}
+        run: ./gradlew publishPlugins
