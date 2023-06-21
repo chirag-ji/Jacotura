@@ -104,6 +104,7 @@ public class JacoturaConversion {
                     CoberturaMethod cMth = cCls.createNewMethod();
                     cMth.setName(getCoberturaFriendlyName(jMth.getName()));
                     cMth.setSignature(jMth.getDescription());
+                    computeRates(cMth, jMth);
                     List<JacocoLine> methodLines = getMethodLines(jCls.getMethods(), jMth, lines);
                     methodLines.forEach(jLine -> {
                         CoberturaLine cLine = cMth.createNewLine();
