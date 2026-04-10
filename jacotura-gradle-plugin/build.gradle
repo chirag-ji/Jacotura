@@ -33,6 +33,7 @@ ext {
 }
 
 dependencies {
+    implementation(project(":jacotura-core"))
     compileOnly(gradleApi())
 
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
