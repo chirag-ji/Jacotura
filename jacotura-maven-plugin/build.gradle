@@ -5,23 +5,17 @@ plugins {
     id 'maven-publish'
 }
 
-group "io.github.chiragji"
-version '1.1.2'
 description "Maven plugin to convert JaCoCo coverage reports to Cobertura coverage reports"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = rootProject.ext.javaVersion
+    targetCompatibility = rootProject.ext.javaVersion
     withSourcesJar()
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {
     implementation(project(":jacotura-core"))
-    compileOnly("org.apache.maven:maven-plugin-api:3.9.9")
+    compileOnly("org.apache.maven:maven-plugin-api:${rootProject.ext.mavenPluginApiVersion}")
 }
 
 processResources {

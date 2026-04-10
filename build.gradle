@@ -1,0 +1,30 @@
+plugins {
+    id 'com.jfrog.artifactory' version '4.25.5' apply false
+    id 'com.gradle.plugin-publish' version '0.12.0' apply false
+    id 'org.sonarqube' version '3.3' apply false
+}
+
+ext {
+    projectGroup = 'io.github.chiragji'
+    projectVersion = '1.1.2'
+
+    javaVersion = JavaVersion.VERSION_1_8
+
+    lombokVersion = '1.18.42'
+    mockitoVersion = '1.10.19'
+    jUnitVersion = '5.8.2'
+    jaxbApiVersion = '3.0.1'
+    jaxbRuntimeVersion = '3.0.2'
+    jetbrainsAnnotationsVersion = '24.1.0'
+    mavenPluginApiVersion = '3.9.9'
+    jacocoVersion = '0.8.13'
+}
+
+allprojects {
+    group = rootProject.ext.projectGroup
+    version = rootProject.ext.projectVersion
+
+    repositories {
+        mavenCentral()
+    }
+}
