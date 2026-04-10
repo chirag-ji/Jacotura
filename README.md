@@ -1,4 +1,4 @@
-Jacotura [jacotura-gradle-plugin]
+Jacotura [jacotura-gradle-plugin, jacotura-maven-plugin]
 ======================
 [![Build](https://github.com/chirag-ji/Jacotura/actions/workflows/gradle.yml/badge.svg)](https://github.com/chirag-ji/Jacotura/actions/workflows/gradle.yml)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/chirag-ji/Jacotura.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/chirag-ji/Jacotura/alerts/)
@@ -14,11 +14,14 @@ Jacotura [jacotura-gradle-plugin]
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5516/badge)](https://bestpractices.coreinfrastructure.org/projects/5516)
 [![CodeQL](https://github.com/chirag-ji/Jacotura/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/chirag-ji/Jacotura/actions/workflows/codeql-analysis.yml)
 
-Jacotura is a [Gradle](https://www.gradle.org) plugin that converts [JaCoCo](http://www.eclemma.org/jacoco/) coverage
-reports to [Cobertura](http://cobertura.github.io/cobertura/) coverage reports.
+Jacotura converts [JaCoCo](http://www.eclemma.org/jacoco/) coverage reports to
+[Cobertura](http://cobertura.github.io/cobertura/) coverage reports. This repository now ships both a
+[Gradle](https://www.gradle.org) plugin and a Maven plugin.
 
 Usage
 -----
+## Gradle
+
 Add the following to buildscript:
 
 ### Multi-module Project
@@ -94,7 +97,62 @@ Run the `jacotura` task to convert jacoco report to cobertura report.
 ./gradlew jacotura
 ```
 
-See [jacotura-demo](https://github.com/chirag-ji/Jacotura/tree/main/jacotura-demo) project for detailed configuration. This plugin ported over from [cover2cover](https://github.com/rix0rrr/cover2cover).
+See [jacotura-demo](https://github.com/chirag-ji/Jacotura/tree/main/jacotura-demo) and
+[jacotura-maven-demo](https://github.com/chirag-ji/Jacotura/tree/main/jacotura-maven-demo)
+for detailed configuration. This plugin ported over from [cover2cover](https://github.com/rix0rrr/cover2cover).
+
+## Maven
+
+Configure the JaCoCo Maven plugin to emit XML, then run Jacotura during `verify`:
+
+```xml
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>${jacoco.version}</version>
+      <executions>
+        <execution>
+          <goals>
+            <goal>prepare-agent</goal>
+          </goals>
+        </execution>
+        <execution>
+          <id>report</id>
+          <phase>verify</phase>
+          <goals>
+            <goal>report</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+    <plugin>
+      <groupId>io.github.chiragji</groupId>
+      <artifactId>jacotura-maven-plugin</artifactId>
+      <version>${latest-tag}</version>
+      <executions>
+        <execution>
+          <phase>verify</phase>
+          <goals>
+            <goal>convert</goal>
+          </goals>
+        </execution>
+      </executions>
+      <configuration>
+        <jacocoReport>${project.build.directory}/site/jacoco/jacoco.xml</jacocoReport>
+        <coberturaReport>${project.build.directory}/site/cobertura/coverage.xml</coberturaReport>
+        <sourceDirs>
+          <sourceDir>${project.basedir}/src/main/java</sourceDir>
+        </sourceDirs>
+        <beautify>true</beautify>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+```
+
+The Maven goal can also be invoked directly with `mvn io.github.chiragji:jacotura-maven-plugin:${latest-tag}:convert`.
 
 If you think this library is useful, please press star button at upside.
 
