@@ -33,7 +33,7 @@
  */
 package io.github.chiragji.jacotura;
 
-import org.gradle.internal.impldep.org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.Objects;

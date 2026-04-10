@@ -1,0 +1,34 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+description "Maven plugin to convert JaCoCo coverage reports to Cobertura coverage reports"
+
+java {
+    sourceCompatibility = rootProject.ext.javaVersion
+    targetCompatibility = rootProject.ext.javaVersion
+    withSourcesJar()
+}
+
+dependencies {
+    implementation(project(":jacotura-core"))
+    compileOnly("org.apache.maven:maven-plugin-api:${rootProject.ext.mavenPluginApiVersion}")
+}
+
+processResources {
+    inputs.property("projectVersion", project.version)
+    filesMatching("META-INF/maven/plugin.xml") {
+        filter(ReplaceTokens, tokens: [projectVersion: project.version])
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from(components.java)
+        }
+    }
+}

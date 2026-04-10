@@ -41,7 +41,7 @@ import jakarta.xml.bind.Marshaller;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.gradle.internal.impldep.org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Nullable;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;

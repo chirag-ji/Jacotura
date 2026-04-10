@@ -1,5 +1,8 @@
 /.gradle/
 /.idea/
 /build/
+/jacotura-core/build/
 /jacotura-demo/build/
 /jacotura-gradle-plugin/build/
+/jacotura-maven-demo/target/
+/jacotura-maven-plugin/build/

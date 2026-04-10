@@ -1,0 +1,29 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+description "Shared Jacotura conversion engine for Gradle and Maven plugins"
+
+java {
+    sourceCompatibility = rootProject.ext.javaVersion
+    targetCompatibility = rootProject.ext.javaVersion
+    withSourcesJar()
+}
+
+dependencies {
+    annotationProcessor("org.projectlombok:lombok:${rootProject.ext.lombokVersion}")
+    compileOnly("org.projectlombok:lombok:${rootProject.ext.lombokVersion}")
+    compileOnly("org.jetbrains:annotations:${rootProject.ext.jetbrainsAnnotationsVersion}")
+
+    implementation("jakarta.xml.bind:jakarta.xml.bind-api:${rootProject.ext.jaxbApiVersion}")
+    implementation("org.glassfish.jaxb:jaxb-runtime:${rootProject.ext.jaxbRuntimeVersion}")
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from(components.java)
+        }
+    }
+}

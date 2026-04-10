@@ -1,0 +1,82 @@
+<plugin>
+  <name>Jacotura Maven Plugin</name>
+  <description>Maven plugin to convert JaCoCo coverage reports to Cobertura coverage reports</description>
+  <groupId>io.github.chiragji</groupId>
+  <artifactId>jacotura-maven-plugin</artifactId>
+  <version>@projectVersion@</version>
+  <goalPrefix>jacotura</goalPrefix>
+  <mojos>
+    <mojo>
+      <goal>convert</goal>
+      <description>Convert a JaCoCo XML report into a Cobertura XML report.</description>
+      <implementation>io.github.chiragji.jacotura.maven.JacoturaMojo</implementation>
+      <language>java</language>
+      <phase>verify</phase>
+      <instantiationStrategy>per-lookup</instantiationStrategy>
+      <executionStrategy>once-per-session</executionStrategy>
+      <requiresDependencyResolution>test</requiresDependencyResolution>
+      <requiresProject>true</requiresProject>
+      <threadSafe>true</threadSafe>
+      <parameters>
+        <parameter>
+          <name>jacocoReport</name>
+          <type>java.io.File</type>
+          <required>true</required>
+          <editable>true</editable>
+          <description>Path to the input JaCoCo XML report.</description>
+        </parameter>
+        <parameter>
+          <name>coberturaReport</name>
+          <type>java.io.File</type>
+          <required>true</required>
+          <editable>true</editable>
+          <description>Path to the generated Cobertura XML report.</description>
+        </parameter>
+        <parameter>
+          <name>sourceDirs</name>
+          <type>java.lang.String[]</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Source directories to include in the Cobertura report.</description>
+        </parameter>
+        <parameter>
+          <name>includedFileNames</name>
+          <type>java.lang.String[]</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Restrict conversion to the provided source file names.</description>
+        </parameter>
+        <parameter>
+          <name>beautify</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Pretty print the generated Cobertura XML.</description>
+        </parameter>
+        <parameter>
+          <name>usePlainFileNames</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Use plain source file names instead of package-relative paths.</description>
+        </parameter>
+        <parameter>
+          <name>skip</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Skip report conversion entirely.</description>
+        </parameter>
+      </parameters>
+      <configuration>
+        <jacocoReport implementation="java.io.File" default-value="${project.build.directory}/site/jacoco/jacoco.xml">${jacocoReport}</jacocoReport>
+        <coberturaReport implementation="java.io.File" default-value="${project.build.directory}/site/cobertura/coverage.xml">${coberturaReport}</coberturaReport>
+        <sourceDirs implementation="java.lang.String[]" default-value="${project.compileSourceRoots}">${sourceDirs}</sourceDirs>
+        <includedFileNames implementation="java.lang.String[]">${includedFileNames}</includedFileNames>
+        <beautify implementation="boolean" default-value="false">${beautify}</beautify>
+        <usePlainFileNames implementation="boolean" default-value="false">${usePlainFileNames}</usePlainFileNames>
+        <skip implementation="boolean" default-value="false">${skip}</skip>
+      </configuration>
+    </mojo>
+  </mojos>
+</plugin>
