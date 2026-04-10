@@ -39,9 +39,6 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     compileOnly("org.projectlombok:lombok:$lombokVersion")
 
-    implementation("jakarta.xml.bind:jakarta.xml.bind-api:$jaxbApi")
-    implementation("org.glassfish.jaxb:jaxb-runtime:$jaxbRuntime")
-
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
