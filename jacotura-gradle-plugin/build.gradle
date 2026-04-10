@@ -25,7 +25,7 @@ java {
 }
 
 ext {
-    lombokVersion = "1.18.22"
+    lombokVersion = "1.18.42"
     mockitoVersion = "1.10.19"
     jUnitVersion = "5.8.2"
     jaxbApi = "3.0.1"
