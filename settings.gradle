@@ -8,4 +8,5 @@ pluginManagement {
 rootProject.name = 'Jacotura'
 include 'jacotura-core'
 include 'jacotura-gradle-plugin'
+include 'jacotura-maven-plugin'
 include 'jacotura-demo'
